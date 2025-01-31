@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrafficLight", "src\TrafficLight\TrafficLight.csproj", "{C01637E3-9424-4BF2-9E4B-0DBFD5455FDD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Traffic", "src\Traffic\Traffic.csproj", "{C01637E3-9424-4BF2-9E4B-0DBFD5455FDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrafficLight.Tests", "test\TrafficLight.Tests\TrafficLight.Tests.csproj", "{7802D929-C992-49D7-A193-97CAD8C8A75C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Traffic.Tests", "test\Traffic.Tests\Traffic.Tests.csproj", "{7802D929-C992-49D7-A193-97CAD8C8A75C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".sln", ".sln", "{F6AED445-1778-4488-B6CF-DE5FE4AFD099}"
 	ProjectSection(SolutionItems) = preProject
