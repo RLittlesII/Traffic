@@ -17,13 +17,18 @@ public class TrafficLight : StateMachine<TrafficLightState, TrafficLightTrigger>
 
     public TrafficLight(TrafficLightState initialState, FiringMode firingMode) : base(initialState, firingMode) { }
 
-    public enum TrafficLightTrigger { }
+    public enum TrafficLightTrigger
+    {
+        Stop,
+        Yield,
+        Go
+    }
 
     public enum TrafficLightState
     {
-        Stop, // Red
-        Yield, // Yellow
-        Go // Green
+        Red,
+        Yellow,
+        Green
     }
 
     public enum TrafficLightDirection
