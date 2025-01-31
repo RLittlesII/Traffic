@@ -10,9 +10,6 @@ partial class TrafficBuild : NukeBuild
     ///   - Microsoft VSCode           https://nuke.build/vscode
     public static int Main() => Execute<TrafficBuild>(x => x.Compile);
 
-    [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
-    readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
-
     Target Clean => definition => definition
        .Before(Restore)
        .OnlyWhenStatic(() => IsLocalBuild)
@@ -23,7 +20,7 @@ partial class TrafficBuild : NukeBuild
 
     Target Compile => definition => definition
        .DependsOn(Restore)
-       .Executes(() => DotNetTasks.DotNetBuild(configuration => configuration.SetConfiguration(Configuration)));
+       .Executes(() => DotNetTasks.DotNetBuild(configuration => configuration));
 
     Target Test => definition => definition
        .DependsOn(Compile)
