@@ -1,13 +1,14 @@
 using Stateless;
-using static TrafficLight.TrafficLight;
 
-namespace TrafficLight;
+namespace Traffic;
 
-public class TrafficLight : StateMachine<TrafficLightState, TrafficLightTrigger>
+public class TrafficLight : StateMachine<TrafficLight.TrafficLightState, TrafficLight.TrafficLightTrigger>
 {
     public TrafficLight(Func<TrafficLightState> stateAccessor, Action<TrafficLightState> stateMutator) : base(stateAccessor, stateMutator) { }
 
-    public TrafficLight(TrafficLightState initialState) : base(initialState) { }
+    public TrafficLight(TrafficLightState initialState) : base(initialState) =>
+        Configure(TrafficLightState.Yellow)
+        .Permit(TrafficLightTrigger.Stop, TrafficLightState.Red);
 
     public TrafficLight(Func<TrafficLightState> stateAccessor, Action<TrafficLightState> stateMutator, FiringMode firingMode) : base(
         stateAccessor,
