@@ -6,8 +6,16 @@ public class TrafficLight : StateMachine<TrafficLight.TrafficLightState, Traffic
 {
     public TrafficLight(Func<TrafficLightState> stateAccessor, Action<TrafficLightState> stateMutator) : base(stateAccessor, stateMutator) { }
 
-    public TrafficLight(TrafficLightState initialState) : base(initialState) => Configure(TrafficLightState.Green)
-       .Permit(TrafficLightTrigger.Yield, TrafficLightState.Yellow);
+    public TrafficLight(TrafficLightState initialState) : base(initialState)
+    {
+        Configure(TrafficLightState.Green)
+           .Permit(TrafficLightTrigger.Yield, TrafficLightState.Yellow);
+
+        Configure(TrafficLightState.Yellow);
+
+        Configure(TrafficLightState.Red)
+           .Permit(TrafficLightTrigger.Go, TrafficLightState.Green);
+    }
 
     public TrafficLight(Func<TrafficLightState> stateAccessor, Action<TrafficLightState> stateMutator, FiringMode firingMode) : base(
         stateAccessor,
