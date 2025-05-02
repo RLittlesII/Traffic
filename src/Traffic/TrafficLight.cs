@@ -9,9 +9,10 @@ public class TrafficLight : StateMachine<TrafficLight.TrafficLightState, Traffic
     public TrafficLight(TrafficLightState initialState) : base(initialState)
     {
         Configure(TrafficLightState.Green)
-           .Permit(TrafficLightTrigger.Yield, TrafficLightState.Yellow);
+           .Permit(TrafficLightTrigger.Stop, TrafficLightState.Yellow);
 
-        Configure(TrafficLightState.Yellow);
+        Configure(TrafficLightState.Yellow)
+           .Permit(TrafficLightTrigger.Stop, TrafficLightState.Red);
 
         Configure(TrafficLightState.Red)
            .Permit(TrafficLightTrigger.Go, TrafficLightState.Green);
@@ -26,13 +27,13 @@ public class TrafficLight : StateMachine<TrafficLight.TrafficLightState, Traffic
     public TrafficLight(TrafficLightState initialState, FiringMode firingMode) : base(initialState, firingMode) { }
 
     public Task Go() => FireAsync(TrafficLightTrigger.Go);
-    public Task Yield() => FireAsync(TrafficLightTrigger.Yield);
+    public Task Yield() => FireAsync(TrafficLightTrigger.Stop);
     public Task Stop() => FireAsync(TrafficLightTrigger.Stop);
 
     public enum TrafficLightTrigger
     {
         Stop,
-        Yield,
+        Yield, // TODO: [rlittlesii: May 02, 2025] Evaluate whether we need this trigger and how the state machine could be configured without it.
         Go
     }
 
