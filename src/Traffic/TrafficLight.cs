@@ -25,6 +25,10 @@ public class TrafficLight : StateMachine<TrafficLight.TrafficLightState, Traffic
 
     public TrafficLight(TrafficLightState initialState, FiringMode firingMode) : base(initialState, firingMode) { }
 
+    public Task Go() => FireAsync(TrafficLightTrigger.Go);
+    public Task Yield() => FireAsync(TrafficLightTrigger.Yield);
+    public Task Stop() => FireAsync(TrafficLightTrigger.Stop);
+
     public enum TrafficLightTrigger
     {
         Stop,

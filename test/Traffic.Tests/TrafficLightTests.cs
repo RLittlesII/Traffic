@@ -14,7 +14,7 @@ public class TrafficLightTests
             TrafficLight sut = new TrafficLight(TrafficLightState.Green);
 
             // When
-            await sut.FireAsync(TrafficLightTrigger.Yield);
+            await sut.Yield();
 
             // Then
             sut.State.ShouldBe(TrafficLightState.Yellow);
@@ -27,7 +27,7 @@ public class TrafficLightTests
             var sut = new TrafficLight(TrafficLightState.Yellow);
 
             // When
-            var result = await Record.ExceptionAsync(async () => await sut.FireAsync(TrafficLightTrigger.Yield));
+            var result = await Record.ExceptionAsync(async () => await sut.Yield());
 
             // Then
             result.ShouldBeOfType<InvalidOperationException>();
@@ -40,7 +40,7 @@ public class TrafficLightTests
             var sut = new TrafficLight(TrafficLightState.Red);
 
             // When
-            var result = await Record.ExceptionAsync(async () => await sut.FireAsync(TrafficLightTrigger.Yield));
+            var result = await Record.ExceptionAsync(async () => await sut.Yield());
 
             // Then
             result.ShouldBeOfType<InvalidOperationException>();
